@@ -125,7 +125,7 @@ container.addEventListener("click", (event) => {
             num1 = null;
             num2 = null;
             break;
-            
+
         default:
             alert("nothing");
     }
@@ -133,9 +133,7 @@ container.addEventListener("click", (event) => {
     if (screenDisplay.textContent.length < 15) {
         screenDisplay.textContent += displayValue;
     }
-    // if (displayValue === "") {
-    //     screenDisplay.textContent = displayValue;
-    // }
+
     screen.appendChild(screenDisplay);
 });
 
