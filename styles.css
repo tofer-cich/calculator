@@ -8,14 +8,19 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     min-width: 400px;
-    min-height: 600px;
+    min-height: 650px;
     max-width: 500px;
-    max-height: 700px;
+    max-height: 750px;
     background-color: rgb(46, 44, 44);
 }
 
 #screen {
+    display: flex;
+    justify-content: right;
     background-color: rgb(172, 226, 226);
+    margin: 4%;
+    font-size: 48px;
+    height: 52px;
 }
 
 #numAndOp {
@@ -50,4 +55,6 @@ body {
 button {
     width: 100px;
     height: 100px;
+    font-size: 32px;
+    font-weight: 600;
 }
