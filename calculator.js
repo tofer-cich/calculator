@@ -78,7 +78,9 @@ container.addEventListener("click", (event) => {
             alert("/");
             break;
         case "clear":
-            alert("clear");
+            displayValue = "";
+            num1 = null;
+            num2 = null;
             break;
         case "equal":
             alert("equal");
@@ -88,6 +90,9 @@ container.addEventListener("click", (event) => {
     }
     if (screenDisplay.textContent.length < 15) {
         screenDisplay.textContent += displayValue;
+    }
+    if (displayValue === "") {
+        screenDisplay.textContent = displayValue;
     }
     screen.appendChild(screenDisplay);
 });
