@@ -17,9 +17,9 @@ function divide(num1, num2) {
     return num1 / num2;
 }
 
-let num1;
-let operator;
-let num2;
+let num1 = null;
+let operator = null;
+let num2 = null;
 
 let displayValue = "";
 
@@ -29,11 +29,15 @@ screenDisplay.textContent = displayValue;
 screen.appendChild(screenDisplay);
 
 const container = document.querySelector("#container");
-
+let answer = null;
 container.addEventListener("click", (event) => {
     let target = event.target;
-    console.log(target.className);
+    displayValue = "";
 
+    if (answer !== null && answer === num1) {
+        screenDisplay.textContent = "";
+        answer = null;
+    }
     switch (target.className) {
         case "1":
             displayValue = "1";
@@ -66,7 +70,27 @@ container.addEventListener("click", (event) => {
             displayValue = "0";
             break;
         case "+":
-            alert("+");
+            // check if first number has been selected
+            // if not, do nothing
+            // Then check if second number has been selected
+            // if not, set num1 to screenDisplay and displayValue to ""
+
+            console.log(`num1: ${num1},  num2: ${num2}`);
+            if (screenDisplay.textContent.length === 0) {
+                break;
+            } else if (num1 === null) {
+                num1 = parseInt(screenDisplay.textContent);
+                screenDisplay.textContent = "";
+                operator = "+";
+            } else  {
+                // operate and add to screen
+                num2 = parseInt(screenDisplay.textContent);
+                num1 = operate(operator, num1, num2);
+                answer = num1;
+                screenDisplay.textContent = num1;
+                operator = "+";
+                console.log("+ 2nd else if");
+            } 
             break;
         case "-":
             alert("-");
@@ -79,26 +103,31 @@ container.addEventListener("click", (event) => {
             break;
         case "clear":
             displayValue = "";
+            screenDisplay.textContent = "";
             num1 = null;
             num2 = null;
             break;
         case "equal":
-            alert("equal");
+            if (num2 === null) {
+                num2 = parseInt(screenDisplay.textContent);
+            }
+
+            screenDisplay.textContent = operate(operator, num1, num2);
+            num1 = null;
+            num2 = null;
             break;
         default:
             alert("nothing");
     }
+
     if (screenDisplay.textContent.length < 15) {
         screenDisplay.textContent += displayValue;
     }
-    if (displayValue === "") {
-        screenDisplay.textContent = displayValue;
-    }
+    // if (displayValue === "") {
+    //     screenDisplay.textContent = displayValue;
+    // }
     screen.appendChild(screenDisplay);
 });
-
-// addEventListener that uses switch case to get the button pushed.
-// It changes the textContent to display the bumber selected.
 
 function operate(operator, num1, num2) {
     let answer;
@@ -121,5 +150,3 @@ function operate(operator, num1, num2) {
 
     return answer;
 }
-
-console.log(operate("-", 5, 2));
