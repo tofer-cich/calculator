@@ -42,39 +42,44 @@ container.addEventListener("click", (event) => {
         case "1":
             displayValue = "1";
             break;
+
         case "2":
             displayValue = "2";
             break;
+
         case "3":
             displayValue = "3";
             break;
+
         case "4":
             displayValue = "4";
             break;
+
         case "5":
             displayValue = "5";
             break;
+
         case "6":
             displayValue = "6";
             break;
+
         case "7":
             displayValue = "7";
             break;
+
         case "8":
             displayValue = "8";
             break;
+
         case "9":
             displayValue = "9";
             break;
+
         case "0":
             displayValue = "0";
             break;
-        case "+":
-            // check if first number has been selected
-            // if not, do nothing
-            // Then check if second number has been selected
-            // if not, set num1 to screenDisplay and displayValue to ""
 
+        case "+":
             console.log(`num1: ${num1},  num2: ${num2}`);
             if (screenDisplay.textContent.length === 0) {
                 break;
@@ -89,24 +94,28 @@ container.addEventListener("click", (event) => {
                 answer = num1;
                 screenDisplay.textContent = num1;
                 operator = "+";
-                console.log("+ 2nd else if");
             } 
             break;
+
         case "-":
             alert("-");
             break;
+
         case "*":
             alert("*");
             break;
+
         case "/":
             alert("/");
             break;
+
         case "clear":
             displayValue = "";
             screenDisplay.textContent = "";
             num1 = null;
             num2 = null;
             break;
+
         case "equal":
             if (num2 === null) {
                 num2 = parseInt(screenDisplay.textContent);
@@ -116,6 +125,7 @@ container.addEventListener("click", (event) => {
             num1 = null;
             num2 = null;
             break;
+            
         default:
             alert("nothing");
     }
