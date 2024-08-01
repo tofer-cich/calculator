@@ -1,4 +1,53 @@
 body {
-    color: red;
-    background-color: purple;
+    
+}
+
+#container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-width: 400px;
+    min-height: 600px;
+    max-width: 500px;
+    max-height: 700px;
+    background-color: rgb(46, 44, 44);
+}
+
+#screen {
+    background-color: rgb(172, 226, 226);
+}
+
+#numAndOp {
+    display: flex;
+    justify-content: center;
+}
+
+#numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+}
+
+#operators {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    align-items: center;
+    gap: 4px;
+}
+
+#equals {
+    display: flex;
+    justify-content: space-around;
+}
+
+.number {
+
+}
+
+button {
+    width: 100px;
+    height: 100px;
 }
