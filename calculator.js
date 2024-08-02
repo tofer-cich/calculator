@@ -14,7 +14,7 @@ function divide(num1, num2) {
     if (num2 === 0) {
         return "can't divide by 0";
     }
-    return num1 / num2;
+    return Math.round(num1 / num2 * 1000000000) / 1000000000;
 }
 
 let num1 = null;
@@ -29,130 +29,125 @@ screenDisplay.textContent = displayValue;
 screen.appendChild(screenDisplay);
 
 const container = document.querySelector("#container");
+
+let newNumber;
+
 let answer = null;
 container.addEventListener("click", (event) => {
     let target = event.target;
-    displayValue = "";
 
-    if (answer !== null && (answer === num1 || num1 === null)) {
-        screenDisplay.textContent = "";
-        answer = null;
+    console.log("answer: " + answer);
+
+    console.log("num1: " + num1);
+    console.log("op: " + operator);
+    if (newNumber && operator != null) {
+        displayValue = "";
+        newNumber = false;
     }
     switch (target.className) {
         case "1":
-            displayValue = "1";
+            displayValue += "1";
             break;
 
         case "2":
-            displayValue = "2";
+            displayValue += "2";
             break;
 
         case "3":
-            displayValue = "3";
+            displayValue += "3";
             break;
 
         case "4":
-            displayValue = "4";
+            displayValue += "4";
             break;
 
         case "5":
-            displayValue = "5";
+            displayValue += "5";
             break;
 
         case "6":
-            displayValue = "6";
+            displayValue += "6";
             break;
 
         case "7":
-            displayValue = "7";
+            displayValue += "7";
             break;
 
         case "8":
-            displayValue = "8";
+            displayValue += "8";
             break;
 
         case "9":
-            displayValue = "9";
+            displayValue += "9";
             break;
 
         case "0":
-            displayValue = "0";
+            displayValue += "0";
             break;
 
         case "+":
-            console.log(`num1: ${num1},  num2: ${num2}`);
-            if (screenDisplay.textContent.length === 0) {
-                break;
-            } else if (num1 === null) {
-                num1 = parseFloat(screenDisplay.textContent);
-                screenDisplay.textContent = "";
-                operator = "+";
-            } else  {
-                num2 = parseFloat(screenDisplay.textContent);
-                num1 = operate(operator, num1, num2);
+            if (num1 === null) {
+                num1 = parseFloat(displayValue);
+            } else if (num2 === null) {
+                num2 = parseFloat(displayValue);
+                displayValue = operate(operator, num1, num2);
+                num1 = displayValue;
                 num2 = null;
-                answer = num1;
-                screenDisplay.textContent = num1;
-                operator = "+";
-            } 
+            } else {
+                num2 = null;
+            }
+            
+            operator = "+";
+            newNumber = true;
             break;
 
         case "-":
-            if (screenDisplay.textContent.length === 0) {
-                break;
-            } else if (num1 === null) {
-                num1 = parseFloat(screenDisplay.textContent);
-                screenDisplay.textContent = "";
-                operator = "-";
-            } else  {
-                num2 = parseFloat(screenDisplay.textContent);
-                num1 = operate(operator, num1, num2);
+            if (num1 === null) {
+                num1 = parseFloat(displayValue);
+            } else if (num2 === null) {
+                num2 = parseFloat(displayValue);
+                displayValue = operate(operator, num1, num2);
+                num1 = displayValue;
                 num2 = null;
-                answer = num1;
-                screenDisplay.textContent = num1;
-                operator = "-";
-            } 
+            } else {
+                num2 = null;
+            }
+            
+            operator = "-";
+            newNumber = true;
             break;
 
         case "*":
-            if (screenDisplay.textContent.length === 0) {
-                break;
-            } else if (num1 === null) {
-                num1 = parseFloat(screenDisplay.textContent);
-                screenDisplay.textContent = "";
-                operator = "*";
-            } else  {
-                num2 = parseFloat(screenDisplay.textContent);
-                num1 = operate(operator, num1, num2);
+            if (num1 === null) {
+                num1 = parseFloat(displayValue);
+            } else if (num2 === null) {
+                num2 = parseFloat(displayValue);
+                displayValue = operate(operator, num1, num2);
+                answer = displayValue;
+                num1 = displayValue;
                 num2 = null;
-                answer = num1;
-                if (num1 > 999999999999999) {
-                    num1 = answer.toExponential(4);
-                }
-                screenDisplay.textContent = num1;
-                operator = "*";
-            } 
+            } else {
+                num2 = null;
+            }
+            
+            operator = "*";
+            newNumber = true;
             break;
 
         case "/":
-            if (screenDisplay.textContent.length === 0) {
-                break;
-            } else if (num1 === null) {
-                num1 = parseFloat(screenDisplay.textContent);
-                screenDisplay.textContent = "";
-                operator = "/";
-            } else  {
-                num2 = parseFloat(screenDisplay.textContent);
-                num1 = operate(operator, num1, num2);
+            if (num1 === null) {
+                num1 = parseFloat(displayValue);
+            } else if (num2 === null) {
+                num2 = parseFloat(displayValue);
+                displayValue = operate(operator, num1, num2);
+                num1 = displayValue;
                 num2 = null;
-                num1 = num1.toPrecision(1 + 4);
-                answer = num1;
-                if (num1 > 999999999999999) {
-                    num1 = answer.toExponential(4);
-                }
-                screenDisplay.textContent = num1;
-                operator = "/";
-            } 
+            } else {
+                num2 = null;
+            }
+            
+            operator = "/";
+            newNumber = true;
             break;
 
         case "clear":
@@ -161,28 +156,36 @@ container.addEventListener("click", (event) => {
             answer = null;
             num1 = null;
             num2 = null;
+            operator = null;
             break;
 
         case "equal":
-            if (num2 === null) {
-                num2 = parseInt(screenDisplay.textContent);
-            }
+            if (num2 === null) num2 = parseFloat(displayValue);
 
-            num1 = operate(operator, num1, num2);
-            screenDisplay.textContent = num1;
-            // screenDisplay.textContent = operate(operator, num1, num2);
-            answer = num1;
-            num1 = null;
-            num2 = null;
+            displayValue = operate(operator, num1, num2);
+            answer = displayValue;
+            num1 = answer;
+            newNumber = true;
+            operator = null;
             break;
 
         default:
-            alert("nothing");
+            // do nothing;
     }
 
-    if (screenDisplay.textContent.length < 15) {
-        screenDisplay.textContent += displayValue;
+    if (screenDisplay.textContent.length < 15 || displayValue === "" || displayValue <= 15) {
+        screenDisplay.textContent = displayValue;
+    } else {
+        displayValue = screenDisplay.textContent;
     }
+
+    if (answer != null) {
+        if (answer > 999999999999999) {
+            answer = answer.toExponential(4);
+        }
+        screenDisplay.textContent = answer;
+    }
+    answer = null;
 
     screen.appendChild(screenDisplay);
 });
@@ -208,4 +211,3 @@ function operate(operator, num1, num2) {
 
     return answer;
 }
-console.log(multiply(9999999999999, 9999999999999));
