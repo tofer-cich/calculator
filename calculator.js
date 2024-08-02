@@ -34,7 +34,7 @@ container.addEventListener("click", (event) => {
     let target = event.target;
     displayValue = "";
 
-    if (answer !== null && answer === num1) {
+    if (answer !== null && (answer === num1 || num1 === null)) {
         screenDisplay.textContent = "";
         answer = null;
     }
@@ -84,13 +84,13 @@ container.addEventListener("click", (event) => {
             if (screenDisplay.textContent.length === 0) {
                 break;
             } else if (num1 === null) {
-                num1 = parseInt(screenDisplay.textContent);
+                num1 = parseFloat(screenDisplay.textContent);
                 screenDisplay.textContent = "";
                 operator = "+";
             } else  {
-                // operate and add to screen
-                num2 = parseInt(screenDisplay.textContent);
+                num2 = parseFloat(screenDisplay.textContent);
                 num1 = operate(operator, num1, num2);
+                num2 = null;
                 answer = num1;
                 screenDisplay.textContent = num1;
                 operator = "+";
@@ -98,20 +98,67 @@ container.addEventListener("click", (event) => {
             break;
 
         case "-":
-            alert("-");
+            if (screenDisplay.textContent.length === 0) {
+                break;
+            } else if (num1 === null) {
+                num1 = parseFloat(screenDisplay.textContent);
+                screenDisplay.textContent = "";
+                operator = "-";
+            } else  {
+                num2 = parseFloat(screenDisplay.textContent);
+                num1 = operate(operator, num1, num2);
+                num2 = null;
+                answer = num1;
+                screenDisplay.textContent = num1;
+                operator = "-";
+            } 
             break;
 
         case "*":
-            alert("*");
+            if (screenDisplay.textContent.length === 0) {
+                break;
+            } else if (num1 === null) {
+                num1 = parseFloat(screenDisplay.textContent);
+                screenDisplay.textContent = "";
+                operator = "*";
+            } else  {
+                num2 = parseFloat(screenDisplay.textContent);
+                num1 = operate(operator, num1, num2);
+                num2 = null;
+                answer = num1;
+                if (num1 > 999999999999999) {
+                    num1 = answer.toExponential(4);
+                }
+                screenDisplay.textContent = num1;
+                operator = "*";
+            } 
             break;
 
         case "/":
-            alert("/");
+            if (screenDisplay.textContent.length === 0) {
+                break;
+            } else if (num1 === null) {
+                num1 = parseFloat(screenDisplay.textContent);
+                screenDisplay.textContent = "";
+                operator = "/";
+            } else  {
+                num2 = parseFloat(screenDisplay.textContent);
+                num1 = operate(operator, num1, num2);
+                num2 = null;
+                num1 = num1.toPrecision(1 + 4);
+                answer = num1;
+                if (num1 > 999999999999999) {
+                    num1 = answer.toExponential(4);
+                }
+                screenDisplay.textContent = num1;
+                operator = "/";
+            } 
             break;
 
         case "clear":
             displayValue = "";
             screenDisplay.textContent = "";
+            answer = null;
             num1 = null;
             num2 = null;
             break;
@@ -121,7 +168,10 @@ container.addEventListener("click", (event) => {
                 num2 = parseInt(screenDisplay.textContent);
             }
 
-            screenDisplay.textContent = operate(operator, num1, num2);
+            num1 = operate(operator, num1, num2);
+            screenDisplay.textContent = num1;
+            // screenDisplay.textContent = operate(operator, num1, num2);
+            answer = num1;
             num1 = null;
             num2 = null;
             break;
@@ -158,3 +208,4 @@ function operate(operator, num1, num2) {
 
     return answer;
 }
+console.log(multiply(9999999999999, 9999999999999));
