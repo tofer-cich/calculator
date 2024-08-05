@@ -36,10 +36,6 @@ body {
     gap: 4px;
 }
 
-#numbers button {
-    background-color: #E7E8EA;
-}
-
 #operators {
     display: flex;
     flex-direction: column;
@@ -52,17 +48,8 @@ body {
     background-color: #B1C3CD;
 }
 
-#equals {
-    display: flex;
-    justify-content: space-around;
-}
-
-#equals button {
-    background-color: #0E4473;
-    color: #E1F1FE;
-}
-
 button {
+    background-color: #E7E8EA;
     width: 100px;
     height: 100px;
     font-size: 32px;
@@ -71,6 +58,16 @@ button {
     box-shadow: 10px 10px 0px black;
     transition: all 150ms ease;
     transform: translate(-3px, -3px);
+}
+
+.equal {
+    background-color: #0E4473;
+    color: #E1F1FE;
+}
+
+.clear {
+    background-color: rgb(168, 15, 15);
+    margin-top: 10px;
 }
 
 button:hover {

@@ -1,13 +1,13 @@
 function add(num1, num2) {
-    return num1 + num2;
+    return Math.round((num1 + num2) * 1000000000) / 1000000000;
 }
 
 function subtract(num1, num2) {
-    return num1 - num2;
+    return Math.round((num1 - num2) * 1000000000) / 1000000000;
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+    return Math.round(num1 * num2 * 1000000000) / 1000000000;
 }
 
 function divide(num1, num2) {
@@ -83,6 +83,12 @@ container.addEventListener("click", (event) => {
 
         case "0":
             displayValue += "0";
+            break;
+
+        case ".":
+            if (!displayValue.includes(".")) {
+                displayValue += ".";
+            }
             break;
 
         case "+":
@@ -167,6 +173,7 @@ container.addEventListener("click", (event) => {
             num1 = answer;
             newNumber = true;
             operator = null;
+            displayValue = "";
             break;
 
         default:
