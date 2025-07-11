@@ -1,16 +1,15 @@
 body {
     background-color: blanchedalmond;
+    display: flex;
+    justify-content: center;
 }
 
 #container {
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    min-width: 400px;
-    min-height: 650px;
+    height: 100vh;
     max-width: 500px;
-    max-height: 750px;
     background-color: #2A6CB6;
     border-radius: 15px;
 }
@@ -27,11 +26,13 @@ body {
 #numAndOp {
     display: flex;
     justify-content: center;
+    flex: 1 1 auto;
 }
 
 #numbers {
     display: flex;
     flex-wrap: wrap;
+    flex: 1 1 auto;
     justify-content: center;
     gap: 4px;
 }
@@ -46,18 +47,22 @@ body {
 
 #operators button {
     background-color: #B1C3CD;
+    width: 60%;
+    height: 19.2%;
 }
 
 button {
     background-color: #E7E8EA;
-    width: 100px;
-    height: 100px;
     font-size: 32px;
     font-weight: 600;
     border-radius: 4px;
     box-shadow: 10px 10px 0px black;
     transition: all 150ms ease;
     transform: translate(-3px, -3px);
+}
+
+#numbers button {
+    width: 25%;
 }
 
 .equal {
@@ -73,4 +78,10 @@ button {
 button:hover {
     transform: translate(2px, 2px);
     box-shadow: 0px 0px 0px black;
+}
+
+@media (max-width: 767px) {
+    button {
+        font-size: 1.3rem;
+    }
 }
