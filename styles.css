@@ -8,7 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 100vh;
+    height: 95vh;
     max-width: 500px;
     background-color: #2A6CB6;
     border-radius: 15px;
@@ -27,6 +27,7 @@ body {
     display: flex;
     justify-content: center;
     flex: 1 1 auto;
+    margin-bottom: 1rem;
 }
 
 #numbers {
@@ -53,6 +54,7 @@ body {
 
 button {
     background-color: #E7E8EA;
+    color: black;
     font-size: 32px;
     font-weight: 600;
     border-radius: 4px;
