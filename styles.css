@@ -4,6 +4,11 @@ body {
     justify-content: center;
 }
 
+button {
+    padding: 0;
+    margin: 0;
+}
+
 #container {
     display: flex;
     flex-direction: column;
@@ -75,6 +80,12 @@ button {
 .clear {
     background-color: rgb(168, 15, 15);
     margin-top: 10px;
+}
+
+.clear button {
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 button:hover {
