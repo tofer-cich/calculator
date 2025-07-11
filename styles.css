@@ -86,7 +86,7 @@ button {
     display: flex;
     justify-content: center;
     align-content: center;
-    flex: 1 1 auto;
+    min-width: 50px;
 }
 
 button:hover {
